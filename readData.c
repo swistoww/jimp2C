@@ -68,7 +68,7 @@ struct ar *readData(char **filename, int nFiles) {
 
 struct ru *readRules(char **filename, int nFiles) {
 
-    struct ru *ruleBank = malloc(INITIAL_BIG_STRUCTURE_SIZE * sizeof(struct ar));
+    struct ru *ruleBank = malloc(INITIAL_BIG_STRUCTURE_SIZE * sizeof(struct ru));
     int i;
     unsigned long hashIdx = 0;
     for (i = 0; i < nFiles; i++) {
