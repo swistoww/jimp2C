@@ -105,7 +105,6 @@ struct ru *readRules(char **filename, int nFiles) {
             }
 
         }
-
     }
-
+    return ruleBank;
 }
