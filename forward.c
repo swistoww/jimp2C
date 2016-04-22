@@ -3,20 +3,22 @@
 
 struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank){
     int i;
-    int length;
+    int length = 2;
     unsigned long ruleIdx;
     char *word;
-    for (i=0; i < length; i++){
+    for (i=0; i < 2; i++){
         int k = 1;
         int value1, value2;
-        word = **(arguments+i);
+        word = 'c';
         ruleIdx = hash(word);
-        if(word =! ruleBank[ruleIdx].consequent){
+        if(word != ruleBank[ruleIdx].consequent){
             printf("Dane sa niekompletne. Brak danej %s\n", word);
             exit(1);
         }
         else{
             char *tmpRule = strdup(ruleBank[ruleIdx].atecendent[i]);
+
+            value1 = simpleThinking(tmpRule, dataBank, ruleBank);
 
             if (dataBank[ruleIdx].value == NULL){ //wstaiwenie do tablicy danych obliczonej wartosci
                 dataBank[ruleIdx].value = value1;
