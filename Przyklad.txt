@@ -6,25 +6,25 @@ Krwiak = T
 Obrzek = T
 ObjSzczt = T
 ObjKorz = F
-Wstrz�s = F
+Wstrzas = F
 Skurcz = F
 OgrROM = F
 UszkApWz = T
 
 Wzory:
 
-!BolSam && BolPalp && !Krwiak && !Obrzek && !ObjSzczt && !OgrROM && !ObjKorz && UszkApWz =>podZwLZlOdSz
+
 (BolSam || BolPalp) && Krwiak && Obrzek && ObjSzczt && OgrROM && !ObjKorz && !UszkApWz => podStlOdSz
 (BolSam || BolPalp) && Krwiak && Obrzek && ObjSzczt && OgrROM && ObjKorz && !UszkApWz => podSkrOdSz
 !(!BolSam && BolPalp && !Krwiak && !Obrzek && !ObjSzczt && !OgrROM && !ObjKorz && UszkApWz) => !podZwLZlOdSz
 !((BolSam || BolPalp) && Krwiak && Obrzek && ObjSzczt && OgrROM && !ObjKorz && !UszkApWz) => !podStlOdSz
 !((BolSam || BolPalp) && Krwiak && Obrzek && ObjSzczt && OgrROM && ObjKorz && !UszkApWz) => !podSkrOdSz
-(BolSam || BolPalp) && !BolProm && Krwiak && Obrzek && !ObjSzczt && !Wstrz�s && Skurcz && !UszkApWz => podStlLSkrOdPrLd
-(BolSam || BolPalp) && !BolProm && Krwiak && Obrzek && ObjSzczt && !Wstrz�s && !Skurcz && UszkApWz => podZlOdPrLd
-!BolSam && !BolPalp && BolProm && Krwiak && Obrzek && !ObjSzczt && Wstrz�s && !Skurcz && !UszkApWz => podZlOdLd
-!((BolSam || BolPalp) && !BolProm && Krwiak && Obrzek && !ObjSzczt && !Wstrz�s && Skurcz && !UszkApWz) => !podStlLSkrOdPrLd
-!((BolSam || BolPalp) && !BolProm && Krwiak && Obrzek && ObjSzczt && !Wstrz�s && !Skurcz && UszkApWz) => !podZlOdPrLd
-!(!BolSam && !BolPalp && BolProm && Krwiak && Obrzek && !ObjSzczt && Wstrz�s && !Skurcz && !UszkApWz) => !podZlOdLd
+(BolSam || BolPalp) && !BolProm && Krwiak && Obrzek && !ObjSzczt && !Wstrzas && Skurcz && !UszkApWz => podStlLSkrOdPrLd
+(BolSam || BolPalp) && !BolProm && Krwiak && Obrzek && ObjSzczt && !Wstrzas && !Skurcz && UszkApWz => podZlOdPrLd
+!BolSam && !BolPalp && BolProm && Krwiak && Obrzek && !ObjSzczt && Wstrzas && !Skurcz && !UszkApWz => podZlOdLd
+!((BolSam || BolPalp) && !BolProm && Krwiak && Obrzek && !ObjSzczt && !Wstrzas && Skurcz && !UszkApWz) => !podStlLSkrOdPrLd
+!((BolSam || BolPalp) && !BolProm && Krwiak && Obrzek && ObjSzczt && !Wstrzas && !Skurcz && UszkApWz) => !podZlOdPrLd
+!(!BolSam && !BolPalp && BolProm && Krwiak && Obrzek && !ObjSzczt && Wstrzas && !Skurcz && !UszkApWz) => !podZlOdLd
 
 podZwLZlOdSz || podStlOdSz || podSkrOdSz => mozKoln
 podZwLZlOdSz || podStlOdSz || podSkrOdSz => mozFarm
