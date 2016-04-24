@@ -9,5 +9,11 @@ set(SOURCE_FILES
         readData.h
         forward.c
         forward.h
+        printData.c
+        printData.h
+        backward.c
+        backward.h
+        checkData.c
+        checkData.h
         )
 add_executable(Engine ${SOURCE_FILES})

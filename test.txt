@@ -1,0 +1,22 @@
+Dane:
+
+a = F
+b = T
+c = T
+e = F
+f = F
+
+Wzory:
+
+a && c => h
+(a && b) || ((c && e) || f) => d
+c || d && (a || b) => g
+g || h => i
+
+
+Szukane:
+
+d = ?
+g = ?
+h = ?
+i = ?

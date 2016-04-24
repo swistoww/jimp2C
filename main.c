@@ -1,18 +1,33 @@
 #include <stdio.h>
 #include "readData.h"
+#include "forward.h"
+#include "printData.h"
+#include "backward.h"
+#include "checkData.h"
 
 int main(int argc, char **argv) {
     char **filename;
     struct ar *dataBank;
     struct ru *ruleBank;
-    int i;
+    int i, j;
     int nFiles = atoi(argv[2]);
     filename = malloc(nFiles*sizeof(char*));
-    for (i=0; i < atoi(argv[2]); i++){
+    for (i=0; i < nFiles; i++){
         filename[i] = strdup(argv[i+3]);
     }
-    dataBank = readData(filename, nFiles);
-    ruleBank = readRules(filename, nFiles);
-    printf("hello");
+
+        dataBank = readData(filename, nFiles);
+        printData(dataBank);
+        ruleBank = readRules(filename, nFiles);
+        printRules(ruleBank);
+    if (strcmp(argv[1], "przod") == 0){
+        dataBank = forwardThinking(dataBank, ruleBank);
+        printResults(dataBank);
+    }
+    else if(strcmp(argv[1], "tyl") == 0){
+        dataBank = backwardThinking(dataBank, ruleBank);
+        printResults(dataBank);
+    }
+
     return(0);
 }
