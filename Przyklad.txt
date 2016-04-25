@@ -13,7 +13,7 @@ UszkApWz = T
 
 Wzory:
 
-
+!BolSam && BolPalp && !Krwiak && !Obrzek && !ObjSzczt && !OgrROM && !ObjKorz && UszkApWz => podZwLZlOdSz
 (BolSam || BolPalp) && Krwiak && Obrzek && ObjSzczt && OgrROM && !ObjKorz && !UszkApWz => podStlOdSz
 (BolSam || BolPalp) && Krwiak && Obrzek && ObjSzczt && OgrROM && ObjKorz && !UszkApWz => podSkrOdSz
 !(!BolSam && BolPalp && !Krwiak && !Obrzek && !ObjSzczt && !OgrROM && !ObjKorz && UszkApWz) => !podZwLZlOdSz

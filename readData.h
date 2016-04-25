@@ -11,7 +11,7 @@
 struct ar {
     char *word;
     char kind;
-    char rep;
+    char *rep;
     int value;
 };
 

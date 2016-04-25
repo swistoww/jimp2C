@@ -1,22 +1,22 @@
 Dane:
 
-a = F
-b = T
-c = T
-e = F
-f = F
+abc = F
+bbc = F
+cfd = T
+ety = F
+fro = F
 
 Wzory:
 
-a && c => h
-(a && b) || ((c && e) || f) => d
-c || d && (a || b) => g
-g || h => i
+abc && cfd => hfg
+!(abc && bbc) || !(!(cfd && ety) || fro) => dnm
+cfd || !dnm && (abc || bbc) => gaw
+gaw || hfg => iop
 
 
 Szukane:
 
-d = ?
-g = ?
-h = ?
-i = ?
+dnm = ?
+gaw = ?
+hfg = ?
+iop = ?
