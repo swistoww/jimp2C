@@ -1,0 +1,22 @@
+Dane:
+
+abc = F
+bbc = F
+cfd = T
+ety = F
+fro = F
+
+Wzory:
+
+abc && cfd => hfg
+!(abc && bbc) || !(!(cfd && ety) || fro) => dnm
+cfd || !dnm && (abc || bbc) => gaw
+gaw || hfg => iop
+
+
+Szukane:
+
+dnm = ?
+gaw = ?
+hfg = ?
+iop = ?

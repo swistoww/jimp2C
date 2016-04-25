@@ -19,7 +19,7 @@ struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
         }
         struct ru *tmpRuleBank = ruleBank;
         char *rule = strdup(tmpRuleBank[i].atecendent);
-        char *tmpRule = malloc(10 * sizeof(char));
+        //char *tmpRule = malloc(2 * sizeof(char));
         int m = 1;
         do {
             int nSIdx = -1, nEIdx = strlen(rule);
@@ -33,15 +33,21 @@ struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
                     break;
                 }
             }
-            tmpRule = realloc(tmpRule, (nEIdx - nSIdx) * sizeof(char));
-            if(nSIdx != -1)
+            char *tmpRule = malloc((nEIdx - nSIdx) * sizeof(char));
+            if(nSIdx != -1){
                 strncpy(tmpRule, rule + nSIdx + 1, nEIdx - nSIdx-1);
-            else
+                if(strlen(tmpRule) > (nEIdx - nSIdx - 1)){
+                    tmpRule[nEIdx - nSIdx-1] = '\0';
+                }
+            }
+            else{
                 strncpy(tmpRule, rule + nSIdx + 1, nEIdx - nSIdx);
+            }
             value = simpleThinking(tmpRule, dataBank);
 
             char *addData = malloc(10 * sizeof(char));
             sprintf(addData, "add%d", m);
+            dataBank[hash(addData)].value = NULL;
             dataBank[hash(addData)].value = value;
 
             char *part1;
@@ -63,39 +69,45 @@ struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
             }
             nawias--;
 
+            //free(tmpRule);
+
+            //free(part1);
+            //free(part2);
+
             if (nawias > -1){
                 m++;
             } else {
-                m = -1;
+                //m = -1;
                 if (rule[0] == '!') {
                     if (dataBank[hash(addData)].value == 1)
                         value = 0;
                     else if (dataBank[hash(addData)].value == 0)
                         value = 1;
                 }
-                free(part1);
-                free(part2);
+                //free(part1);
+                //free(part2);
+                break;
             }
-        } while (m > 0);
+        } while (m > -1);
 
-        free(tmpRule);
+        //free(tmpRule);
 
         if (dataBank[dataIdx].value == _NULL) { //wstawienie do tablicy danych obliczonej wartosci
             if (oposite == 1){
                 if (value == 1) {
                     dataBank[dataIdx].value = 0;
-                    dataBank[dataIdx].rep = 'F';
+                    dataBank[dataIdx].rep = "F";
                 }
                 else {
                     dataBank[dataIdx].value = 1;
-                    dataBank[dataIdx].rep = 'T';
+                    dataBank[dataIdx].rep = "T";
                 }
             }
             else {
                 dataBank[dataIdx].value = value;
                 if (value == 1)
-                    dataBank[dataIdx].rep = 'T';
-                else dataBank[dataIdx].rep = 'F';
+                    dataBank[dataIdx].rep = "T";
+                else dataBank[dataIdx].rep = "F";
             }
         }
         else if (dataBank[dataIdx].value != value) {
@@ -109,17 +121,16 @@ int simpleThinking (char *rule, struct ar *dataBank){
     int value1, value2, k=1;
     unsigned long dataIdx;
     char *operator;
-    char *token;
-    char *tmpRule = strdup(rule);
+    char *temporaryRule = strdup(rule);
+    char *token = strtok(temporaryRule, " ");
 
-    token = strtok(tmpRule, " ");
     while(1){
         if (k == 1){
             if(token[0] == '!'){
                 memmove(&token[0], &token[1], strlen(token));
                 dataIdx = hash(token);
-                if(dataBank[dataIdx].word == NULL)
-                    dataMissing(dataBank[dataIdx].word);
+                /*if(dataBank[dataIdx].word == NULL)
+                    dataMissing(dataBank[dataIdx].word);*/
                 if (dataBank[dataIdx].value == 1)
                     value1 = 0;
                 else if (dataBank[dataIdx].value == 0)
@@ -128,8 +139,8 @@ int simpleThinking (char *rule, struct ar *dataBank){
                     dataEmpty(dataBank[dataIdx].word);
             }else {
                 dataIdx = hash(token);
-                if(dataBank[dataIdx].word == NULL)
-                    dataMissing(dataBank[dataIdx].word);
+                /*if(dataBank[dataIdx].word == NULL)
+                    dataMissing(dataBank[dataIdx].word);*/
                 value1 = dataBank[dataIdx].value;
             }
             if ((strlen(rule)) == strlen(token))
@@ -139,23 +150,23 @@ int simpleThinking (char *rule, struct ar *dataBank){
         }
         else{
             token = strtok(NULL, " ");
-        }
-        if(token[0] == '!'){
-            memmove(&token[0], &token[1], strlen(token));
-            dataIdx = hash(token);
-            if(dataBank[dataIdx].word == NULL)
-                dataMissing(dataBank[dataIdx].word);
-            if (dataBank[dataIdx].value == 1)
-                value2 = 0;
-            else if (dataBank[dataIdx].value == 0)
-                value2 = 1;
-            else
-                dataEmpty(dataBank[dataIdx].word);
-        }else {
-            dataIdx = hash(token);
-            if(dataBank[dataIdx].word == NULL)
-                dataMissing(dataBank[dataIdx].word);
-            value2 = dataBank[dataIdx].value;
+            if(token[0] == '!'){
+                memmove(&token[0], &token[1], strlen(token));
+                dataIdx = hash(token);
+                /*if(dataBank[dataIdx].word == NULL)
+                    dataMissing(dataBank[dataIdx].word);*/
+                if (dataBank[dataIdx].value == 1)
+                    value2 = 0;
+                else if (dataBank[dataIdx].value == 0)
+                    value2 = 1;
+                else
+                    dataEmpty(dataBank[dataIdx].word);
+            }else {
+                dataIdx = hash(token);
+                /*if(dataBank[dataIdx].word == NULL)
+                    dataMissing(dataBank[dataIdx].word);*/
+                value2 = dataBank[dataIdx].value;
+            }
         }
         char *tmpAnd = "&&";
         if (strcmp(operator, tmpAnd) == 0){

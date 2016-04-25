@@ -13,6 +13,7 @@ struct ar *readData(char **filename, int nFiles) {
     struct ar *dataBank = malloc(INITIAL_BIG_STRUCTURE_SIZE * sizeof(struct ar));
     int x;
     for ( x= 0;  x < INITIAL_BIG_STRUCTURE_SIZE; x++) {
+        dataBank[x].word = malloc(10* sizeof(char));
         dataBank[x].word = NULL;
         dataBank[x].value = NULL;
         dataBank[x].rep = NULL;
@@ -55,14 +56,15 @@ struct ar *readData(char **filename, int nFiles) {
                     dataBank[hashIdx].word = strdup(token);
                     token = strtok(NULL, " =\r\n");
                     if (dataBank[hashIdx].rep == NULL) {
-                        dataBank[hashIdx].rep = strdup(token);
 
                         if (strcmp(token, "F") == 0) {
                             dataBank[hashIdx].value = 0;
                             dataBank[hashIdx].kind = 'D';
+                            dataBank[hashIdx].rep = "F";
                         } else if (strcmp(token, "T") == 0) {
                             dataBank[hashIdx].value = 1;
                             dataBank[hashIdx].kind = 'D';
+                            dataBank[hashIdx].rep = "T";
                         } else if (strcmp(token, "?") == 0) {
                             dataBank[hashIdx].kind = 'S';
                         } else {

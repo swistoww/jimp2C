@@ -6,7 +6,7 @@ void printData(struct ar *dataBank){
     for (i=0; i < INITIAL_BIG_STRUCTURE_SIZE; i++){
         if(dataBank[i].word != NULL) {
             if (dataBank[i].kind == 'D') {
-                printf("%s = %d\n", dataBank[i].word, dataBank[i].value);
+                printf("%s = %s\n", dataBank[i].word, dataBank[i].rep);
             }
         }
     }
@@ -26,7 +26,7 @@ void printResults(struct ar *dataBank){
     for (i=0; i < INITIAL_BIG_STRUCTURE_SIZE; i++){
         if(dataBank[i].word != NULL) {
             if (dataBank[i].kind == 'S') {
-                printf("%s = %d\n", dataBank[i].word, dataBank[i].value);
+                printf("%s = %s\n", dataBank[i].word, dataBank[i].rep);
             }
         }
     }
