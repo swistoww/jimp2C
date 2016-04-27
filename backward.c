@@ -84,15 +84,42 @@ struct ar *backwardThinking(struct ar *dataBank, struct ru *ruleBank){
 }
 
 struct bw *simpleBackwardThinking (char *rule, struct ar *dataBank, struct bw *subRulesBank){
-    unsigned long dataIdx;
+    /*unsigned long dataIdx;
     char *tmpRule = rule;
     int value1, value2, k, value;
     k = 1;
-    char *operand2;
+    char *operand1;
 
     if (k==1) {
-        operand2 = tmpRule;
-        value = subRulesBank[hash(operand2)].value;
+        operand1 = tmpRule;
+        value = subRulesBank[hash(operand1)].value;
+    }
+    else {
+        char *operator = malloc(2*sizeof(char));
+        operand1 = strdup(strrchr(tmpRule, ' ')+1);
+        strncpy(operator, strrchr(tmpRule, ' ')-2, 2);
+        char *operand2 = malloc((strlen(tmpRule)-strlen(operand2)-4)*sizeof(char));
+        strncpy(operand2, tmpRule, strlen(tmpRule)-strlen(operand2)-4);
+    }
+    char *tmpAnd = "&&";
+    if (strcmp(operator, tmpAnd) == 0){
+        if (value == 1) {
+            value1 = 1;
+            value2 = 1;
+        }
+    }
+    char *tmpOr = "||";
+    if (strcmp(operator, tmpOr) == 0) {
+        if
+    }
+
+    char *tmpAnd = "&&";
+    if (strcmp(operator, tmpAnd) == 0){
+        value1 = (value1 && value2);
+    }
+    char *tmpOr = "||";
+    if (strcmp(operator, tmpOr) == 0) {
+        value1 = (value1 || value2);
     }
     tmpRule = subRulesBank[hash(operand2)].rule;
     char *operator = malloc(2*sizeof(char));
@@ -101,6 +128,6 @@ struct bw *simpleBackwardThinking (char *rule, struct ar *dataBank, struct bw *s
     char *operand1 = malloc((strlen(tmpRule)-strlen(operand2)-4)*sizeof(char));
     strncpy(operand1, tmpRule, strlen(tmpRule)-strlen(operand2)-4);
 
-
+*/
     return dataBank;
 }

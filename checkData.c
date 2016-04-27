@@ -1,7 +1,8 @@
 #include "checkData.h"
 
 void dataMissing(char *word){
-    printf("W bazie nie ma danej %s.\n.", word);
+    printf("W bazie nie ma danej:\n %s\nNie moge dalej liczyc!\n.", word);
+    exit(1);
 }
 
 void dataEmpty(char *word){
@@ -14,4 +15,5 @@ void dataDuplicate(char *word){
 
 void dataInconsistent(char *word){
     printf("Dana %s jest zduplikowana.\n", word);
+    exit(1);
 }
