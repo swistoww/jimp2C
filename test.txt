@@ -8,11 +8,10 @@ fro = F
 
 Wzory:
 
-abc && cfd => hfg
+gaw || hfg => iop
+abc && cfd => !hfg
 !(abc && bbc) || !(!(cfd && ety) || fro) => dnm
 cfd || !dnm && (abc || bbc) => gaw
-gaw || hfg => iop
-
 
 Szukane:
 

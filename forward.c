@@ -4,13 +4,18 @@
 
 struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
     int i;
-    for (i = 0; i < ruleBank[0].counter; i++) {
+    int value= -1, counter = 0;
+    for (i = 0; counter < ruleBank[0].counter; i++) {
         int j;
         int oposite = 0;
-        int value, nawias = 0;
+        int  nawias = 0;
         if(ruleBank[i].consequent[0] == '!') {
             memmove(&ruleBank[i].consequent[0], &ruleBank[i].consequent[1], strlen(ruleBank[i].consequent));
             oposite++;
+        }
+        if(dataBank[hash(ruleBank[i].consequent)].rep !=NULL){
+            counter++;
+            continue;
         }
         unsigned long dataIdx = hash(ruleBank[i].consequent);
         if (dataBank[dataIdx].word == NULL){
@@ -44,6 +49,9 @@ struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
                 strncpy(tmpRule, rule + nSIdx + 1, nEIdx - nSIdx);
             }
             value = simpleThinking(tmpRule, dataBank);
+            if (value == 2){
+                break;
+            }
 
             char *addData = malloc(10 * sizeof(char));
             sprintf(addData, "add%d", m);
@@ -91,6 +99,13 @@ struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
             }
         } while (m > -1);
 
+        if (value == 2){
+            counter++;
+            if (counter == (ruleBank[0].counter - 1))
+                dataMissing();
+            continue;
+        }
+
         //free(tmpRule);
 
         if (dataBank[dataIdx].rep !=  "F" && dataBank[dataIdx].rep != "T") { //wstawienie do tablicy danych obliczonej wartosci
@@ -111,12 +126,9 @@ struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
                 else dataBank[dataIdx].rep = "F";
             }
         }
-        else if (dataBank[dataIdx].value != value) {
-            if(dataBank[dataIdx].value == 0){
-                dataBank[dataIdx].value = 1;
-                dataBank[dataIdx].rep = "T";
-            }
-        }
+        if(i == (ruleBank[0].counter - 1))
+            i = -1;
+        counter = 0;
     }
     return dataBank;
 }
@@ -133,8 +145,10 @@ int simpleThinking (char *rule, struct ar *dataBank){
             if(token[0] == '!'){
                 memmove(&token[0], &token[1], strlen(token));
                 dataIdx = hash(token);
-                if(dataBank[dataIdx].rep == NULL)
-                    dataMissing(token);
+                if(dataBank[dataIdx].rep == NULL) {
+                    value1 = 2;
+                    break;
+                }
                 if (dataBank[dataIdx].value == 1)
                     value1 = 0;
                 else if (dataBank[dataIdx].value == 0)
@@ -143,9 +157,10 @@ int simpleThinking (char *rule, struct ar *dataBank){
                     dataEmpty(dataBank[dataIdx].word);
             }else {
                 dataIdx = hash(token);
-                if(dataBank[dataIdx].rep == NULL)
-                    dataMissing(token);
-                value1 = dataBank[dataIdx].value;
+                if(dataBank[dataIdx].rep == NULL) {
+                    value1 = 2;
+                    break;
+                } else value1 = dataBank[dataIdx].value;
             }
             if ((strlen(rule)) == strlen(token) || (strlen(rule)-1) == strlen(token))
                 break;
@@ -157,8 +172,10 @@ int simpleThinking (char *rule, struct ar *dataBank){
             if(token[0] == '!'){
                 memmove(&token[0], &token[1], strlen(token));
                 dataIdx = hash(token);
-                if(dataBank[dataIdx].rep == NULL)
-                    dataMissing(token);
+                if(dataBank[dataIdx].rep == NULL) {
+                    value1 = 2;
+                    break;
+                }
                 if (dataBank[dataIdx].value == 1)
                     value2 = 0;
                 else if (dataBank[dataIdx].value == 0)
@@ -167,8 +184,10 @@ int simpleThinking (char *rule, struct ar *dataBank){
                     dataEmpty(dataBank[dataIdx].word);
             }else {
                 dataIdx = hash(token);
-                if(dataBank[dataIdx].rep == NULL)
-                    dataMissing(token);
+                if(dataBank[dataIdx].rep == NULL) {
+                    value1 = 2;
+                    break;
+                }
                 value2 = dataBank[dataIdx].value;
             }
         }

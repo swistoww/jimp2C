@@ -1,7 +1,7 @@
 #include "checkData.h"
 
-void dataMissing(char *word){
-    printf("W bazie nie ma danej:\n %s\nNie moge dalej liczyc!\n.", word);
+void dataMissing(){
+    printf("W bazie nie ma potrzebnej danej. Nie moge dalej liczyc!\n.");
     exit(1);
 }
 
