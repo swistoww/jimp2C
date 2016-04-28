@@ -5,7 +5,7 @@
 struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
     int i;
     int value= -1, counter = 0;
-    for (i = 0; counter < ruleBank[0].counter; i++) {
+    for (i = 0; counter < ruleBank[0].counter; i++) { //tutaj po przejściu przez wszystkie reguły i ustawia się na 1 zamiast na 0 :/ Trzeba to poprawić
         int j;
         int oposite = 0;
         int  nawias = 0;
@@ -15,6 +15,8 @@ struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
         }
         if(dataBank[hash(ruleBank[i].consequent)].rep !=NULL){
             counter++;
+            if(counter == ruleBank[0].counter)
+                break;
             continue;
         }
         unsigned long dataIdx = hash(ruleBank[i].consequent);
@@ -101,6 +103,8 @@ struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
 
         if (value == 2){
             counter++;
+            if(i == (ruleBank[0].counter -1))
+                i = -1;
             if (counter == (ruleBank[0].counter - 1))
                 dataMissing();
             continue;
