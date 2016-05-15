@@ -1,15 +1,18 @@
 Dane:
-BolSam = T
-BolPalp = F
+BolSam(X) = T
+BolPalp(X) = F
 BolProm = F
 Krwiak = T
 Obrzek = T
-ObjSzczt = T
+ObjSzczt(X) = T
 ObjKorz = F
 Wstrzas = F
 Skurcz = F
 OgrROM = F
 UszkApWz = T
+
+BolSam = T
+BolPalp = F
 
 Wzory:
 

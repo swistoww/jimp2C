@@ -75,7 +75,6 @@ struct ar *readData(char **filename, int nFiles) {
                         printf("Dana %s jest zduplikowana!", dataBank[hashIdx].word);
                         exit(1);
                     }
-
                 }
             }
         }
@@ -119,8 +118,8 @@ struct ru *readRules(char **filename, int nFiles) {
             ruleBank[j].atecendent = strdup(tmp);
             j++;
         }
-
     }
+
     ruleBank[0].counter = s;
     return ruleBank;
 }
