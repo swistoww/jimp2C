@@ -8,6 +8,8 @@ unsigned long hash(char *word) {
     return hash;
 }
 
+
+
 struct ar *readData(char **filename, int nFiles) {
 
     struct ar *dataBank = malloc(INITIAL_BIG_STRUCTURE_SIZE * sizeof(struct ar));

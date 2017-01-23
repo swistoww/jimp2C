@@ -6,14 +6,7 @@
 #include <string.h>
 #include "readData.h"
 
-struct bw{
-    char *shortcut;
-    char *rule;
-    int value;
-};
-
 struct ar *backwardThinking(struct ar *dataBank, struct ru *ruleBank);
-
-struct bw *simpleBackwardThinking (char *rule, struct ar *dataBank, struct bw *subRulesBank);
+struct ar *simpleBackwardThinking (struct ar *dataBank, char *rule, int ruleValue);
 
 #endif

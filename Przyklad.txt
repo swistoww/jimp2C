@@ -1,5 +1,6 @@
 Dane:
 BolSam(X) = T
+BolSam(Y) = F
 BolPalp(X) = F
 BolProm = F
 Krwiak = T

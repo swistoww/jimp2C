@@ -5,10 +5,10 @@
 struct ar *forwardThinking(struct ar *dataBank, struct ru *ruleBank) {
     int i;
     int value= -1, counter = 0;
-    for (i = 0; counter < ruleBank[0].counter; i++) { //tutaj po przejściu przez wszystkie reguły i ustawia się na 1 zamiast na 0 :/ Trzeba to poprawić
+    for (i = 0; i < ruleBank[0].counter && counter < ruleBank[0].counter; i++) { //tutaj po przejściu przez wszystkie reguły i ustawia się na 1 zamiast na 0 :/ Trzeba to poprawić
         int j;
         int oposite = 0;
-        int  nawias = 0;
+        int nawias = 0;
         if(ruleBank[i].consequent[0] == '!') {
             memmove(&ruleBank[i].consequent[0], &ruleBank[i].consequent[1], strlen(ruleBank[i].consequent));
             oposite++;

@@ -19,6 +19,7 @@ struct ru {
     char *consequent;
     char *atecendent;
     int counter;
+    int processedFlag;
 };
 
 struct ru *readRules(char **filename, int nFiles);

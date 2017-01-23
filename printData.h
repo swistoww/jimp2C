@@ -9,5 +9,6 @@
 void printData(struct ar *dataBank);
 void printRules(struct ru *ruleBank);
 void printResults(struct ar *dataBank);
+void printToFile(char *output, struct ar *dataBank);
 
 #endif

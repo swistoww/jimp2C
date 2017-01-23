@@ -26,7 +26,28 @@ void printResults(struct ar *dataBank){
     for (i=0; i < INITIAL_BIG_STRUCTURE_SIZE; i++){
         if(dataBank[i].word != NULL) {
             if (dataBank[i].kind == 'S') {
-                printf("%s = %s\n", dataBank[i].word, dataBank[i].rep);
+                if (dataBank[i].value == 1){
+                    printf("%s = T\n", dataBank[i].word);
+                }else{
+                    printf("%s = F\n", dataBank[i].word);
+                }
+            }
+        }
+    }
+}
+
+void printToFile(char *output, struct ar *dataBank){
+    int i;
+    FILE *fp;
+    fp = fopen(output, "w");
+    for (i=0; i < INITIAL_BIG_STRUCTURE_SIZE; i++){
+        if(dataBank[i].word != NULL) {
+            if (dataBank[i].kind == 'S') {
+                if (dataBank[i].value == 1){
+                    fprintf(fp, "%s = T\r\n", dataBank[i].word);
+                }else {
+                    fprintf(fp, "%s = F\r\n", dataBank[i].word);
+                }
             }
         }
     }
