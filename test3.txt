@@ -1,0 +1,12 @@
+Dane:
+
+gaw = T
+hfg = F
+
+Wzory:
+
+gaw || hfg => iop
+
+Szukane:
+
+iop = ?
